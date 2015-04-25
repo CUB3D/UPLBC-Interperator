@@ -35,4 +35,27 @@ public class Value
 	{
 		return text.replaceAll("/n", "\n");
 	}
+
+	@Override
+	public String toString()
+	{
+		String ret = "";
+
+		if(text != null)
+		{
+			ret += "Text: " + text;
+		}
+
+		if(number != null)
+		{
+			ret += "Number: " + number.toPlainString();
+		}
+
+        if(text != null && number != null)
+        {
+            ret = "Test: " + text + ", Number: " + number.toPlainString();
+        }
+
+        return ret;
+	}
 }
