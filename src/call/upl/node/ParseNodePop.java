@@ -2,6 +2,7 @@ package call.upl.node;
 
 import java.math.BigDecimal;
 
+import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.Value;
 
@@ -13,7 +14,7 @@ public class ParseNodePop extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		String namea = null;
 
@@ -24,7 +25,10 @@ public class ParseNodePop extends ParseNode
 		{
 			BigDecimal value = parser.getStack().pop().getNumber();
 
-			System.out.println("Stack:pop, " + namea + ", " + value.toPlainString());
+            if(UPL.DEBUG)
+            {
+                System.out.println("Stack:pop, " + namea + ", " + value.toPlainString());
+            }
 
 			if(namea != null)
 				parser.getMap().put(args[1], new Value(value));

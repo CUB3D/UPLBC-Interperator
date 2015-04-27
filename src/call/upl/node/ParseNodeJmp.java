@@ -11,7 +11,7 @@ public class ParseNodeJmp extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		String funcName = args[1];
 

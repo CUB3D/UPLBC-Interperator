@@ -12,22 +12,21 @@ public class ParseNodeDwd extends ParseNode
 	}
 
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		String var = args[1];
 
-		String s = "";
-		
-		for(int i = 2; i < args.length; i++)
-			s += args[i] + " ";
+        // dwd Answer: .
 
-        s = s.trim();
-		
-		parser.getMap().put(var, new Value(s));
+        line = line.replaceFirst(getOpcode() + " " + var + " ", "");
+
+        // Answer: .
+
+        parser.getMap().put(var, new Value(line));
 
         if(UPL.DEBUG)
         {
-            System.out.println("DWD, S: " + s + ", Var: " + var);
+            System.out.println("DWD, S: " + line + ", Var: " + var);
         }
 
 		return curLine;

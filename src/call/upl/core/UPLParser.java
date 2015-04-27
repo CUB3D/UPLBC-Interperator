@@ -32,6 +32,19 @@ public class UPLParser
 		{
 			String s = code.get(i);
 
+			if(s.startsWith(".")) // line is function
+			{
+				while(true)
+				{
+					i++;
+
+					if(code.get(i).equals("end"))
+					{
+						break;
+					}
+				}
+			}
+
 			i = parseLine(s, i, code);
 		}
 	}
@@ -47,7 +60,7 @@ public class UPLParser
 		ParseNode pn = ParseNode.getNode(opCode);
 
 		if(pn != null)
-			ret = pn.execute(this, args, i);
+			ret = pn.execute(this, args, i, s);
 
 		return ret;
 	}

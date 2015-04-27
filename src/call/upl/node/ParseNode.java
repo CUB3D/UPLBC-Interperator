@@ -32,7 +32,7 @@ public abstract class ParseNode
 		nodes.add(this);
 	}
 	
-	public abstract int execute(UPLParser parser, String[] args, int curLine);
+	public abstract int execute(UPLParser parser, String[] args, int curLine, String line);
 	
 	public String getOpcode()
 	{

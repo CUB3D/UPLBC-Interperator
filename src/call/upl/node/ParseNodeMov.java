@@ -14,7 +14,7 @@ public class ParseNodeMov extends ParseNode
 	}
 
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		String name = args[1];
 

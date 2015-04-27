@@ -14,7 +14,7 @@ public class ParseNodeInt extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		int id = Integer.parseInt(args[1].replace("0x", ""), 16);
 

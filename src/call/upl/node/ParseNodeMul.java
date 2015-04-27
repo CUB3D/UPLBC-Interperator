@@ -14,7 +14,7 @@ public class ParseNodeMul extends ParseNode
 	}
 
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine)
+	public int execute(UPLParser parser, String[] args, int curLine, String line)
 	{
 		String namea = args[1];
 		String nameb = args[2];

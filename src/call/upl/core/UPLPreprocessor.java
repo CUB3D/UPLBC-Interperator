@@ -38,8 +38,8 @@ public class UPLPreprocessor
 
 			while((s = br.readLine()) != null)
 			{
-				if(!s.trim().isEmpty())
-					code.add(s.trim());
+				if(!s.isEmpty())
+					code.add(s);
 			}
 
 		}catch(Exception e) {
