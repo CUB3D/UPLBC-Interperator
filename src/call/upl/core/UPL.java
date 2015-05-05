@@ -32,6 +32,6 @@ public class UPL
 	
 	public static void main(String[] args) throws Exception
 	{
-		new UPL("E:\\Development\\Java\\UPL Compiler\\Test.o");
+		new UPL(args[0]);
 	}
 }
