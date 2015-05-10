@@ -1,6 +1,7 @@
 package call.upl.node;
 
 import call.upl.core.Function;
+import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 
 public class ParseNodeJmp extends ParseNode
@@ -15,7 +16,10 @@ public class ParseNodeJmp extends ParseNode
 	{
 		String funcName = args[1];
 
-		System.out.println("Jump:called, " + funcName);
+		if(UPL.DEBUG)
+		{
+			System.out.println("Jump:called, " + funcName);
+		}
 
 		for(Function f : parser.getFunctions())
 			if(f.getName().equals(funcName))

@@ -23,15 +23,15 @@ public class ParseNodePop extends ParseNode
 
 		if(!parser.getStack().isEmpty())
 		{
-			BigDecimal value = parser.getStack().pop().getNumber();
+			Value value = parser.getStack().pop();
 
             if(UPL.DEBUG)
             {
-                System.out.println("Stack:pop, " + namea + ", " + value.toPlainString());
+				System.out.println("Stack:pop, " + namea + ", " + (value == null ? "NULL" : value.toString()));
             }
 
 			if(namea != null)
-				parser.getMap().put(args[1], new Value(value));
+				parser.getMap().put(args[1], value);
 		}
 		return curLine;
 	}

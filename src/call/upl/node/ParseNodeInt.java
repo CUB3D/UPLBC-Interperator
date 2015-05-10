@@ -1,5 +1,6 @@
 package call.upl.node;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import call.upl.core.UPLParser;
@@ -32,6 +33,28 @@ public class ParseNodeInt extends ParseNode
 
 		if(id == 2)
 			parser.getStack().push(new Value(new BigDecimal(parser.getStack().size())));
+
+		if(id == 3)
+		{
+			try
+			{
+				parser.getStack().push(new Value(new BigDecimal(System.in.read())));
+			} catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		if(id == 4)
+		{
+			Value v = parser.getStack().pop();
+
+			BigDecimal bigDecimal = v.getNumber();
+
+            String s = "" + (char) bigDecimal.intValue();
+
+			parser.getStack().push(new Value(s));
+		}
 		
 		return curLine;
 	}
