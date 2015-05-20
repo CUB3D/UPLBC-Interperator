@@ -22,6 +22,7 @@ public abstract class ParseNode
 	public static final ParseNode jmp = new ParseNodeJmp();
 	public static final ParseNode if_ = new ParseNodeIf_();
 	public static final ParseNode dwd = new ParseNodeDwd();
+	public static final ParseNode wil = new ParseNodeWhl_();
 	
 	private String opCode;
 	

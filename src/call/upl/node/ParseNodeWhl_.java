@@ -1,18 +1,18 @@
 package call.upl.node;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
 
-public class ParseNodeIf_ extends ParseNode
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ParseNodeWhl_ extends ParseNode
 {
-	public ParseNodeIf_()
+	public ParseNodeWhl_()
 	{
-		super("if");
+		super("whl");
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class ParseNodeIf_ extends ParseNode
 
 		for(int n = curLine + 1; n < parser.getCode().size(); n++)
 		{
-			if(parser.getCode().get(n).equals("endif"))
+			if(parser.getCode().get(n).equals("endwhl"))
 			{
 				curLine = n;
 
@@ -52,11 +52,31 @@ public class ParseNodeIf_ extends ParseNode
 
 		if(UPL.DEBUG)
 		{
-			System.out.println("If:called, " + arg1 + ", " + val1.toPlainString() + ", " + arg2 + ", " + val2.toPlainString() + ", " + op + ", " + ans);
+			System.out.println("While:called, " + arg1 + ", " + val1.toPlainString() + ", " + arg2 + ", " + val2.toPlainString() + ", " + op + ", " + ans);
 		}
 
-		if(ans)
+		while(ans)
+		{
+            val1 = UPLUtils.getValue(arg1, parser).getNumber();
+            val2 = UPLUtils.getValue(arg2, parser).getNumber();
+
+			if(op.equals("=="))
+				ans = val1.compareTo(val2) == 0;
+
+			if(op.equals(">"))
+				ans = val1.compareTo(val2) == 1;
+
+			if(op.equals("<"))
+				ans = val1.compareTo(val2) == -1;
+
+            if(!ans)
+            {
+                break;
+            }
+
 			parser.parseCode(code);
+		}
+
 		return curLine;
 	}
 }
