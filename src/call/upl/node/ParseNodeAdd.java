@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
 import call.upl.core.Value;
+import call.upl.core.ValueType;
 
 public class ParseNodeAdd extends ParseNode
 {
@@ -19,12 +20,28 @@ public class ParseNodeAdd extends ParseNode
 		String namea = args[1];
 		String nameb = args[2];
 
-		BigDecimal valuea = UPLUtils.getValue(namea, parser).getNumber();
-		BigDecimal valueb = UPLUtils.getValue(nameb, parser).getNumber();
+		Value valueA = UPLUtils.getValue(namea, parser);
+		Value valueB = UPLUtils.getValue(nameb, parser);
 
-		BigDecimal result = valuea.add(valueb);
+		if(valueA.getType() == ValueType.NUMBER && valueB.getType() == ValueType.NUMBER)
+		{
+			BigDecimal decimalA = valueA.getNumber();
+			BigDecimal decimalB = valueB.getNumber();
 
-		parser.getStack().push(new Value(result));
+			BigDecimal result = decimalA.add(decimalB);
+
+			parser.getStack().push(new Value(result));
+		}
+
+		if(valueA.getType() == ValueType.STRING && valueB.getType() == ValueType.STRING)
+		{
+			String stringA = valueA.getText();
+			String stringB = valueB.getText();
+
+			String result = stringA + stringB;
+
+			parser.getStack().push(new Value(result));
+		}
 		
 		return curLine;
 	}
