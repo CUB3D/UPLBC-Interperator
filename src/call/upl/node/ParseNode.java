@@ -1,5 +1,6 @@
 package call.upl.node;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import call.upl.core.UPLParser;
@@ -33,7 +34,7 @@ public abstract class ParseNode
 		nodes.add(this);
 	}
 	
-	public abstract int execute(UPLParser parser, String[] args, int curLine, String line);
+	public abstract int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code);
 	
 	public String getOpcode()
 	{

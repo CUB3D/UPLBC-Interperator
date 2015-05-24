@@ -4,6 +4,8 @@ import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.Value;
 
+import java.util.List;
+
 public class ParseNodeDwd extends ParseNode
 {
 	public ParseNodeDwd()
@@ -12,7 +14,7 @@ public class ParseNodeDwd extends ParseNode
 	}
 
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine, String line)
+	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		String var = args[1];
 

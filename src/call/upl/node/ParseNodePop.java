@@ -1,6 +1,6 @@
 package call.upl.node;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
@@ -14,7 +14,7 @@ public class ParseNodePop extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine, String line)
+	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		String namea = null;
 

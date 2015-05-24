@@ -16,7 +16,7 @@ public class ParseNodeIf_ extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine, String line)
+	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		String arg1 = args[1];
 		String arg2 = args[3];
@@ -25,18 +25,18 @@ public class ParseNodeIf_ extends ParseNode
 		BigDecimal val1 = UPLUtils.getValue(arg1, parser).getNumber();
 		BigDecimal val2 = UPLUtils.getValue(arg2, parser).getNumber();
 
-		List<String> code = new ArrayList<String>();
+		List<String> ifCode = new ArrayList<String>();
 
-		for(int n = curLine + 1; n < parser.getCode().size(); n++)
+		for(int n = curLine + 1; n < code.size(); n++)
 		{
-			if(parser.getCode().get(n).equals("endif"))
+			if(code.get(n).equals("endif"))
 			{
 				curLine = n;
 
 				break;
 			}
 			else
-				code.add(parser.getCode().get(n));
+				ifCode.add(code.get(n));
 		}
 
 		boolean ans = false;
@@ -56,7 +56,7 @@ public class ParseNodeIf_ extends ParseNode
 		}
 
 		if(ans)
-			parser.parseCode(code);
+			parser.parseCode(ifCode);
 		return curLine;
 	}
 }

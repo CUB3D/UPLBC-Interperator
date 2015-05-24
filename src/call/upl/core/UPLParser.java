@@ -28,7 +28,7 @@ public class UPLParser
 
 	public void parseCode(List<String> code)
 	{
-		for(int i =0; i < code.size(); i++)
+		for(int i = 0; i < code.size(); i++)
 		{
 			String s = code.get(i);
 
@@ -60,7 +60,7 @@ public class UPLParser
 		ParseNode pn = ParseNode.getNode(opCode);
 
 		if(pn != null)
-			ret = pn.execute(this, args, i, s);
+			ret = pn.execute(this, args, i, s, text);
 
 		return ret;
 	}

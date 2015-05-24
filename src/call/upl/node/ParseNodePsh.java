@@ -5,6 +5,8 @@ import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
 import call.upl.core.Value;
 
+import java.util.List;
+
 public class ParseNodePsh extends ParseNode
 {
 	public ParseNodePsh()
@@ -13,7 +15,7 @@ public class ParseNodePsh extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine, String line)
+	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		String name = args[1];
 

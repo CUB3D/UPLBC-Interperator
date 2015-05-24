@@ -2,6 +2,7 @@ package call.upl.node;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 import call.upl.core.UPLParser;
 import call.upl.core.Value;
@@ -15,7 +16,7 @@ public class ParseNodeInt extends ParseNode
 	}
 	
 	@Override
-	public int execute(UPLParser parser, String[] args, int curLine, String line)
+	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		int id = Integer.parseInt(args[1].replace("0x", ""), 16);
 
