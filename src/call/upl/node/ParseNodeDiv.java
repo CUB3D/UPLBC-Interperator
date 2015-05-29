@@ -5,7 +5,8 @@ import java.util.List;
 
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
-import call.upl.core.Value;
+import call.upl.core.value.NumberValue;
+import call.upl.core.value.Value;
 
 public class ParseNodeDiv extends ParseNode
 {
@@ -25,7 +26,7 @@ public class ParseNodeDiv extends ParseNode
 
 		BigDecimal result = valuea.divide(valueb);
 
-		parser.getStack().push(new Value(result));
+		parser.getStack().push(new NumberValue(result));
 		
 		return curLine;
 	}

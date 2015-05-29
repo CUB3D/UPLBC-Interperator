@@ -4,7 +4,7 @@ import java.util.List;
 
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
-import call.upl.core.Value;
+import call.upl.core.value.Value;
 
 public class ParseNodePop extends ParseNode
 {

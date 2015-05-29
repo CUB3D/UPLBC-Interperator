@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import call.upl.core.UPLParser;
-import call.upl.core.Value;
-import call.upl.core.ValueType;
+import call.upl.core.value.NumberValue;
+import call.upl.core.value.StringValue;
+import call.upl.core.value.Value;
+import call.upl.core.value.ValueType;
 
 public class ParseNodeInt extends ParseNode
 {
@@ -33,13 +35,13 @@ public class ParseNodeInt extends ParseNode
 		}
 
 		if(id == 2)
-			parser.getStack().push(new Value(new BigDecimal(parser.getStack().size())));
+			parser.getStack().push(new NumberValue(new BigDecimal(parser.getStack().size())));
 
 		if(id == 3)
 		{
 			try
 			{
-				parser.getStack().push(new Value(new BigDecimal(System.in.read())));
+				parser.getStack().push(new NumberValue(new BigDecimal(System.in.read())));
 			} catch(IOException e)
 			{
 				e.printStackTrace();
@@ -54,7 +56,7 @@ public class ParseNodeInt extends ParseNode
 
             String s = "" + (char) bigDecimal.intValue();
 
-			parser.getStack().push(new Value(s));
+			parser.getStack().push(new StringValue(s));
 		}
 
 		if(id == 5)
@@ -63,7 +65,7 @@ public class ParseNodeInt extends ParseNode
 
 			char c = v.getText().charAt(0);
 
-			parser.getStack().push(new Value(new BigDecimal((int) c)));
+			parser.getStack().push(new NumberValue(new BigDecimal((int) c)));
 		}
 		
 		return curLine;

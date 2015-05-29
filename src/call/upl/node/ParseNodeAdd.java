@@ -5,8 +5,10 @@ import java.util.List;
 
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
-import call.upl.core.Value;
-import call.upl.core.ValueType;
+import call.upl.core.value.NumberValue;
+import call.upl.core.value.StringValue;
+import call.upl.core.value.Value;
+import call.upl.core.value.ValueType;
 
 public class ParseNodeAdd extends ParseNode
 {
@@ -31,7 +33,7 @@ public class ParseNodeAdd extends ParseNode
 
 			BigDecimal result = decimalA.add(decimalB);
 
-			parser.getStack().push(new Value(result));
+			parser.getStack().push(new NumberValue(result));
 		}
 
 		if(valueA.getType() == ValueType.STRING && valueB.getType() == ValueType.STRING)
@@ -41,7 +43,7 @@ public class ParseNodeAdd extends ParseNode
 
 			String result = stringA + stringB;
 
-			parser.getStack().push(new Value(result));
+			parser.getStack().push(new StringValue(result));
 		}
 		
 		return curLine;

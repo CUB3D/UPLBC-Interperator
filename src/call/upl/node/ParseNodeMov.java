@@ -6,7 +6,8 @@ import java.util.List;
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
-import call.upl.core.Value;
+import call.upl.core.value.NumberValue;
+import call.upl.core.value.Value;
 
 public class ParseNodeMov extends ParseNode
 {
@@ -29,7 +30,7 @@ public class ParseNodeMov extends ParseNode
 			System.out.println("Moved value: " + value.toPlainString() + ", Into: " + name);
 		}
 
-		parser.getMap().put(name, new Value(value));
+        UPLUtils.putValue(name, new NumberValue(value), parser);
 		
 		return curLine;
 	}

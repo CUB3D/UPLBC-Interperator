@@ -3,7 +3,7 @@ package call.upl.node;
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
-import call.upl.core.Value;
+import call.upl.core.value.Value;
 
 import java.util.List;
 
