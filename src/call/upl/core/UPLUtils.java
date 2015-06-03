@@ -32,7 +32,7 @@ public class UPLUtils
 
                 int pos = getValue(valueString, parser).getNumber().intValue();
 
-                return arrayValue.getArray()[pos];
+                value = arrayValue.getArray()[pos];
             }
 			else
 			{

@@ -20,4 +20,10 @@ public class NumberValue extends Value
     {
         return number;
     }
+
+    @Override
+    public String getText()
+    {
+        return getNumber().toPlainString();
+    }
 }

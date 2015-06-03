@@ -4,6 +4,7 @@ import java.util.List;
 
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
+import call.upl.core.UPLUtils;
 import call.upl.core.value.Value;
 
 public class ParseNodePop extends ParseNode
@@ -16,10 +17,10 @@ public class ParseNodePop extends ParseNode
 	@Override
 	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
-		String namea = null;
+		String name = null;
 
 		if(args.length > 1)
-			namea = args[1];
+			name = args[1];
 
 		if(!parser.getStack().isEmpty())
 		{
@@ -27,12 +28,15 @@ public class ParseNodePop extends ParseNode
 
             if(UPL.DEBUG)
             {
-				System.out.println("Stack:pop, " + namea + ", " + (value == null ? "NULL" : value.toString()));
+				System.out.println("Stack:pop, " + name + ", " + (value == null ? "NULL" : value.toString()));
             }
 
-			if(namea != null)
-				parser.getMap().put(args[1], value);
+			if(name != null)
+			{
+				UPLUtils.putValue(name, value, parser);
+			}
 		}
+
 		return curLine;
 	}
 }

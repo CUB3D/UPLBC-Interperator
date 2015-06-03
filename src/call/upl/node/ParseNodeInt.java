@@ -27,11 +27,9 @@ public class ParseNodeInt extends ParseNode
 		{
 			Value value = parser.getStack().pop();
 
-			if(value.getType() == ValueType.NUMBER)
-				System.out.print(value.getNumber().intValue());
+			System.out.println(value);
 
-			if(value.getType() == ValueType.STRING)
-				System.out.print(value.getText());
+			System.out.print(value.getText());
 		}
 
 		if(id == 2)

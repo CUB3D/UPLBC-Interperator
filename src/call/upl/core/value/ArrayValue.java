@@ -25,4 +25,10 @@ public class ArrayValue extends Value
     {
         values[pos] = value;
     }
+
+    @Override
+    public String getText()
+    {
+        return values.toString();
+    }
 }
