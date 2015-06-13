@@ -17,6 +17,8 @@ public class UPLParser
 
 	private Stack<Value> stack = new Stack<Value>();
 
+	private Stack<String> namespaceStack = new Stack<>();
+
 	public UPLParser(UPLPreprocessor preprocessor)
 	{
 		this.preprocessor = preprocessor;
@@ -85,4 +87,9 @@ public class UPLParser
 	{
 		return this.preprocessor.getCode();
 	}
+
+    public Stack<String> getNamespaceStack()
+    {
+        return namespaceStack;
+    }
 }

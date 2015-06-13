@@ -26,6 +26,8 @@ public abstract class ParseNode
 	public static final ParseNode wil = new ParseNodeWhl_();
 	public static final ParseNodeArray PARSE_NODE_ARRAY = new ParseNodeArray();
 	public static final ParseNodeModulus PARSE_NODE_MODULUS = new ParseNodeModulus();
+	public static final ParseNodeNsp PARSE_NODE_NSP = new ParseNodeNsp();
+    public static final ParseNodeEndNsp PARSE_NODE_END_NSP = new ParseNodeEndNsp();
 
 	
 	private String opCode;
