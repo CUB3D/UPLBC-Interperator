@@ -2,6 +2,7 @@ package call.upl.node;
 
 import call.upl.core.UPL;
 import call.upl.core.UPLParser;
+import call.upl.core.UPLUtils;
 import call.upl.core.value.StringValue;
 import call.upl.core.value.Value;
 
@@ -25,7 +26,7 @@ public class ParseNodeDwd extends ParseNode
 
         // Answer: .
 
-        parser.getMap().put(var, new StringValue(line));
+		UPLUtils.putValue(var, new StringValue(line), parser);
 
         if(UPL.DEBUG)
         {
