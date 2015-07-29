@@ -65,6 +65,20 @@ public class ParseNodeInt extends ParseNode
 
 			parser.getStack().push(new NumberValue(new BigDecimal((int) c)));
 		}
+
+		if(id == 6)
+		{
+			Value v = parser.getStack().pop();
+
+			if(v.getType() == ValueType.ARRAY)
+			{
+				parser.getStack().push(new NumberValue(new BigDecimal(v.getArray().length)));
+			}
+			else
+			{
+				// error
+			}
+		}
 		
 		return curLine;
 	}
