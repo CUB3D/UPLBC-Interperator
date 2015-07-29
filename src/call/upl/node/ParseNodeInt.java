@@ -27,8 +27,6 @@ public class ParseNodeInt extends ParseNode
 		{
 			Value value = parser.getStack().pop();
 
-			System.out.println(value);
-
 			System.out.print(value.getText());
 		}
 
