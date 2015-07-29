@@ -26,6 +26,8 @@ public class ParseNodeSub extends ParseNode
 
 		BigDecimal result = valuea.subtract(valueb);
 
+		System.out.println();
+
 		parser.getStack().push(new NumberValue(result));
 		
 		return curLine;

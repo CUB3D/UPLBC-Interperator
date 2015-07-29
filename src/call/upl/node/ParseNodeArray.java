@@ -31,8 +31,8 @@ public class ParseNodeArray extends ParseNode
             System.out.println("Created array: " + values + ", Size: " + size.intValue() + ", Name: " + name);
         }
 
-		parser.getMap().put(name, new ArrayValue(values));
-		
+		UPLUtils.putValue(name, new ArrayValue(values), parser);
+
 		return curLine;
 	}
 }

@@ -5,6 +5,7 @@ import call.upl.core.value.Value;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Set;
 
 
 public class UPLUtils
@@ -48,9 +49,26 @@ public class UPLUtils
                 Map<String, Value> map = parser.getMap();
 
                 if(map.containsKey(s))
+                {
                     value = map.get(s);
+                }
                 else
-                    new Exception("Cannot pharse: " + s).printStackTrace();
+                {
+                    Exception e = new Exception("Cannot pharse: " + s);
+
+                    e.printStackTrace();
+
+                    System.out.println("Map dump BEGIN");
+
+                    for(Map.Entry<String, Value> x : map.entrySet())
+                    {
+                        System.out.println(x.getKey() + " : " + x.getValue().toString());
+                    }
+
+                    System.out.println("Map dump END");
+
+                    System.exit(0);
+                }
             }
         }
 
@@ -67,13 +85,12 @@ public class UPLUtils
         if(name.matches(REGEX_MATCH_ARRAY_ACCESS)) // array access (x[y])
         {
             String[] args = name.split("\\[");
-            String arrayName = getRealName(args[0], parser);
 
-            ArrayValue arrayValue = (ArrayValue) getValueImpl(arrayName, parser);
+            ArrayValue arrayValue = (ArrayValue) getValueImpl(args[0], parser);
 
             String valueString = args[1].substring(0, args[1].length() - 1);
 
-            int pos = getValueImpl(valueString, parser).getNumber().intValue();
+            int pos = getValue(valueString, parser).getNumber().intValue();
 
             arrayValue.setArray(pos, value);
         }

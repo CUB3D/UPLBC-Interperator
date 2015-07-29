@@ -23,14 +23,14 @@ public class ParseNodeMov extends ParseNode
 
 		String valueStr = args[2];
 
-		BigDecimal value = UPLUtils.getValue(valueStr, parser).getNumber();
+		Value value = UPLUtils.getValue(valueStr, parser);
 
 		if(UPL.DEBUG)
 		{
-			System.out.println("Moved value: " + value.toPlainString() + ", Into: " + name);
+			System.out.println("Moved value: " + value.toString() + ", Into: " + name);
 		}
 
-        UPLUtils.putValue(name, new NumberValue(value), parser);
+        UPLUtils.putValue(name, value, parser);
 		
 		return curLine;
 	}
