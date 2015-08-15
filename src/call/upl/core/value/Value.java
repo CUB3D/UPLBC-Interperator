@@ -23,4 +23,6 @@ public class Value
 	}
 
     public Value[] getArray() { return null; }
+
+	public Object getData() {return null;}
 }

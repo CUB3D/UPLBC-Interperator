@@ -31,4 +31,10 @@ public class ArrayValue extends Value
     {
         return values.toString();
     }
+
+    @Override
+    public Object getData()
+    {
+        return values;
+    }
 }

@@ -28,6 +28,8 @@ public abstract class ParseNode
 	public static final ParseNodeModulus PARSE_NODE_MODULUS = new ParseNodeModulus();
 	public static final ParseNodeNsp PARSE_NODE_NSP = new ParseNodeNsp();
     public static final ParseNodeEndNsp PARSE_NODE_END_NSP = new ParseNodeEndNsp();
+	public static final ParseNodeCreateNativeClass PARSE_NODE_CREATE_NATIVE_CLASS = new ParseNodeCreateNativeClass();
+    public static final ParseNodeCallNativeMethod PARSE_NODE_CALL_NATIVE_METHOD = new ParseNodeCallNativeMethod();
 
 	
 	private String opCode;

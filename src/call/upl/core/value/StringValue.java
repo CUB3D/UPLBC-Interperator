@@ -18,4 +18,10 @@ public class StringValue extends Value
     {
         return text.replaceAll("/n", "\n");
     }
+
+    @Override
+    public Object getData()
+    {
+        return text;
+    }
 }
