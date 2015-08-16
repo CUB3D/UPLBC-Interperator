@@ -1,7 +1,6 @@
 package call.upl.node;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -75,6 +74,32 @@ public class ParseNodeInt extends ParseNode
 			{
 				// error
 			}
+		}
+
+		if(7 == id)
+		{
+			//stack order
+            //mode
+            //file name
+
+            int mode = parser.getStack().pop().getNumber().intValue();
+
+            String fileName = parser.getStack().pop().getText();
+
+            if (1 == mode)
+            {
+                BufferedReader reader = null;
+
+                try
+                {
+                    reader = new BufferedReader(new FileReader(new File(fileName)));
+                } catch (FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+
+                parser.getStack().push(new NativeClassValue(reader));
+            }
 		}
 		
 		return curLine;

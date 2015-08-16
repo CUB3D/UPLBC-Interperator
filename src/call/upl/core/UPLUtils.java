@@ -1,8 +1,12 @@
 package call.upl.core;
 import call.upl.core.value.ArrayValue;
 import call.upl.core.value.NumberValue;
+import call.upl.core.value.StringValue;
 import call.upl.core.value.Value;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Set;
@@ -12,9 +16,11 @@ public class UPLUtils
 {
     public static final String REGEX_MATCH_ARRAY_ACCESS = "[A-Za-z@0-9]+\\[[A-Za-z@0-9]+\\]";
 
+    public static final String REGEX_MATCH_NUMBER = "[\\x00-\\x20]*[+-]?(NaN|Infinity|((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?)|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*";
+
     public static Value getValue(String s, UPLParser parser)
     {
-        if(!s.matches("[\\x00-\\x20]*[+-]?(NaN|Infinity|((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?)|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*")) // check if number
+        if(!s.matches(REGEX_MATCH_NUMBER))
         {
             s = getRealName(s, parser);
         }
@@ -26,7 +32,7 @@ public class UPLUtils
     {
         Value value = null;
 
-        if(s.matches("[\\x00-\\x20]*[+-]?(NaN|Infinity|((((\\p{Digit}+)(\\.)?((\\p{Digit}+)?)([eE][+-]?(\\p{Digit}+))?)|(\\.((\\p{Digit}+))([eE][+-]?(\\p{Digit}+))?)|(((0[xX](\\p{XDigit}+)(\\.)?)|(0[xX](\\p{XDigit}+)?(\\.)(\\p{XDigit}+)))[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*")) // check if number
+        if(s.matches(REGEX_MATCH_NUMBER))
         {
             value = new NumberValue(new BigDecimal(s));
         }

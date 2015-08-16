@@ -2,12 +2,10 @@ package call.upl.node;
 
 import call.upl.core.UPLParser;
 import call.upl.core.UPLUtils;
-import call.upl.core.value.ArrayValue;
-import call.upl.core.value.NativeClassValue;
-import call.upl.core.value.StringValue;
-import call.upl.core.value.Value;
+import call.upl.core.value.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ParseNodeCallNativeMethod extends ParseNode
@@ -47,35 +45,49 @@ public class ParseNodeCallNativeMethod extends ParseNode
             e.printStackTrace();
         }
 
-        Value retValue = null;
+        Value outputValue = convertOutputToValue(ret);
 
-        if(ret instanceof String)
+        if(outputValue != null)
         {
-            retValue = new StringValue((String) ret);
-        }
-
-        if(ret instanceof Object[])
-        {
-            Object[] arry = (Object[]) ret;
-            Value[] valueArry = new Value[arry.length];
-
-            for(int i = 0; i < arry.length; i++)
-            {
-                Object o = arry[i];
-
-                if(o instanceof String)
-                {
-                    valueArry[i] = new StringValue((String) o);
-                }
-            }
-        }
-
-        if(retValue != null)
-        {
-            parser.getStack().push(retValue);
+            parser.getStack().push(outputValue);
         }
 		
 		return curLine;
 	}
 
+    public Value convertOutputToValue(Object output)
+    {
+        Value returnValue = null;
+
+        if(output instanceof String)
+        {
+            returnValue = new StringValue((String) output);
+        }
+        else
+        {
+            if (output.toString().matches(UPLUtils.REGEX_MATCH_NUMBER))
+            {
+                returnValue = new NumberValue(new BigDecimal(output.toString()));
+            }
+            else
+            {
+                if (output instanceof Object[])
+                {
+                    Object[] objects = (Object[]) output;
+                    Value[] values = new Value[objects.length];
+
+                    for (int i = 0; i < objects.length; i++)
+                    {
+                        Object o = objects[i];
+
+                        values[i] = convertOutputToValue(o);
+                    }
+
+                    returnValue = new ArrayValue(values);
+                }
+            }
+        }
+
+        return returnValue;
+    }
 }

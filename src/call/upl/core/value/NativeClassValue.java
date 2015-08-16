@@ -15,6 +15,14 @@ public class NativeClassValue extends Value
     private Object classInstance;
     private Class<?> classType;
 
+    public NativeClassValue(Object classInstance)
+    {
+        this.classInstance = classInstance;
+        this.classType = classInstance.getClass();
+
+        this.type = ValueType.NATIVE_CLASS;
+    }
+
     public NativeClassValue(String className, Object... constructorArguments)
     {
         try
