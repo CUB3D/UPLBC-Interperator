@@ -56,7 +56,10 @@ public class UPLPreprocessor
 			i = parseFunctionLine(s, i);
 		}
 
-		System.out.println("Found " + funcs.size() + " functions");
+		if(UPL.DEBUG)
+        {
+            System.out.println("Found " + funcs.size() + " functions");
+        }
 	}
 	
 	private int parseFunctionLine(String s, int i)
@@ -83,7 +86,10 @@ public class UPLPreprocessor
 
 			Function f = new Function(name, cod);
 
-			System.out.println("Function added: " + name);
+            if(UPL.DEBUG)
+            {
+                System.out.println("Function added: " + name);
+            }
 
 			funcs.add(f);
 		}
