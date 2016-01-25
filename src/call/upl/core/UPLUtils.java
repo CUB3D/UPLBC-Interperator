@@ -54,7 +54,7 @@ public class UPLUtils
 
                     String valueString = args[1].substring(0, args[1].length() - 1);
 
-                    int pos = getValueImpl(valueString, parser).getNumber().intValue();
+                    int pos = getValue(valueString, parser).getNumber().intValue();
 
                     value = arrayValue.getArray()[pos];
                 }
@@ -66,7 +66,7 @@ public class UPLUtils
 
                         String valueString = args[1].substring(0, args[1].length() - 1);
 
-                        int pos = getValueImpl(valueString, parser).getNumber().intValue();
+                        int pos = getValue(valueString, parser).getNumber().intValue();
 
                         value = new StringValue(""+stringValue.getText().toCharArray()[pos]);
                     }
