@@ -3,6 +3,7 @@ import call.upl.core.value.ArrayValue;
 import call.upl.core.value.NumberValue;
 import call.upl.core.value.StringValue;
 import call.upl.core.value.Value;
+import call.upl.core.value.ValueType;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,13 +44,33 @@ public class UPLUtils
                 String[] args = s.split("\\[");
                 String name = args[0];
 
-                ArrayValue arrayValue = (ArrayValue) getValueImpl(name, parser);
+                Value val = getValueImpl(name, parser);
 
-                String valueString = args[1].substring(0, args[1].length() - 1);
+                ValueType valueType = val.getType();
 
-                int pos = getValueImpl(valueString, parser).getNumber().intValue();
+                if(valueType == ValueType.ARRAY)
+                {
+                    ArrayValue arrayValue = (ArrayValue) val;
 
-                value = arrayValue.getArray()[pos];
+                    String valueString = args[1].substring(0, args[1].length() - 1);
+
+                    int pos = getValueImpl(valueString, parser).getNumber().intValue();
+
+                    value = arrayValue.getArray()[pos];
+                }
+                else
+                {
+                    if(valueType == ValueType.STRING)
+                    {
+                        StringValue stringValue = (StringValue) val;
+
+                        String valueString = args[1].substring(0, args[1].length() - 1);
+
+                        int pos = getValueImpl(valueString, parser).getNumber().intValue();
+
+                        value = new StringValue(""+stringValue.getText().toCharArray()[pos]);
+                    }
+                }
             } else
             {
                 Map<String, Value> map = parser.getMap();
