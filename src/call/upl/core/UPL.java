@@ -1,7 +1,11 @@
 package call.upl.core;
-import cub3d.file.main.FileAPI;
-import cub3d.file.reader.Reader;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class UPL
 {
@@ -12,18 +16,19 @@ public class UPL
 	
 	public UPL(String file)
 	{
-		FileAPI api = new FileAPI(file);
-		
-		Reader r = null;
-		
-		try
-		{
-			r = api.getReader();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		this.preprocessor = new UPLPreprocessor(r);
+		Path path = Paths.get(file);
+
+        BufferedReader reader = null;
+
+        try
+        {
+            reader = Files.newBufferedReader(path);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        this.preprocessor = new UPLPreprocessor(reader);
 		this.preprocessor.process();
 		
 		this.parser = new UPLParser(this.preprocessor);	

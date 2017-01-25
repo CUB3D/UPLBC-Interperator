@@ -1,23 +1,21 @@
 package call.upl.core;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import cub3d.file.reader.BasicReader;
-import cub3d.file.reader.Reader;
-
 public class UPLPreprocessor
 {
-	private Reader reader;
+	private BufferedReader reader;
 	
 	private List<String> code = new ArrayList<String>();
 	
 	private Set<Function> funcs = new HashSet<Function>();
 	
 	
-	public UPLPreprocessor(Reader r)
+	public UPLPreprocessor(BufferedReader r)
 	{
 		this.reader = r;
 	}
@@ -32,11 +30,9 @@ public class UPLPreprocessor
 	{
 		try
 		{
-			BasicReader br = new BasicReader(reader);
-
 			String s;
 
-			while((s = br.readLine()) != null)
+			while((s = reader.readLine()) != null)
 			{
 				if(!s.isEmpty())
 					code.add(s);

@@ -3,6 +3,7 @@ package call.upl.node;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
+import java.util.BitSet;
 import java.util.List;
 
 import call.upl.core.UPLParser;
@@ -100,6 +101,17 @@ public class ParseNodeInt extends ParseNode
 
                 parser.getStack().push(new NativeClassValue(reader));
             }
+		}
+
+		//Gets the length of a string
+		if(id == 8)
+		{
+			Value v = parser.getStack().pop();
+
+			if(v.getType() == ValueType.STRING)
+			{
+				parser.getStack().push(new NumberValue(new BigDecimal(v.getText().length())));
+			}
 		}
 		
 		return curLine;
