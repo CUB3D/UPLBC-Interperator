@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.BitSet;
 import java.util.List;
 
+import call.upl.core.UPL;
 import call.upl.core.UPLParser;
 import call.upl.core.value.*;
 
@@ -20,6 +21,11 @@ public class ParseNodeInt extends ParseNode
 	public int execute(UPLParser parser, String[] args, int curLine, String line, List<String> code)
 	{
 		int id = Integer.parseInt(args[1].replace("0x", ""), 16);
+
+		if(UPL.DEBUG)
+		{
+			System.out.println("Int: id: " + id + " stack size: " + parser.getStack().size());
+		}
 
 
 		if(id == 1)
@@ -73,7 +79,15 @@ public class ParseNodeInt extends ParseNode
 			}
 			else
 			{
-				// error
+				if(v.getType() == ValueType.STRING)
+				{
+					parser.getStack().push(new NumberValue(new BigDecimal(v.getText().length())));
+				}
+				else
+				{
+					System.out.println("Int: 6, invalid type");
+					System.exit(0);
+				}
 			}
 		}
 

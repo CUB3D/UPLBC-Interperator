@@ -24,4 +24,11 @@ public class StringValue extends Value
     {
         return text;
     }
+
+    @Override
+    public Value[] getArray()
+    {
+        //TODO: have a conversion between strings and arrays
+        return super.getArray();
+    }
 }

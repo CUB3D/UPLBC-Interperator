@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 public class UPL
 {
-	public static final boolean DEBUG = false;
+	public static boolean DEBUG = false;
 
 	private UPLPreprocessor preprocessor;
 	private UPLParser parser;
@@ -37,6 +37,14 @@ public class UPL
 	
 	public static void main(String[] args) throws Exception
 	{
-		new UPL(args[0]);
+		if(args[0].equals("-debug"))
+		{
+			DEBUG = true;
+            new UPL(args[1]);
+		}
+        else
+        {
+            new UPL(args[0]);
+        }
 	}
 }

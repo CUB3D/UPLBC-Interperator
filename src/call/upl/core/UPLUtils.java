@@ -81,10 +81,6 @@ public class UPLUtils
                 }
                 else
                 {
-                    Exception e = new Exception("Cannot pharse: " + s);
-
-                    e.printStackTrace();
-
                     System.out.println("Map dump BEGIN");
 
                     for(Map.Entry<String, Value> x : map.entrySet())
@@ -93,6 +89,9 @@ public class UPLUtils
                     }
 
                     System.out.println("Map dump END");
+
+                    Exception e = new Exception("Cannot parse: " + s);
+                    e.printStackTrace();
 
                     System.exit(0);
                 }
